@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Button, Text, Textarea } from '@nextui-org/react';
 import supabase from '../services/supabase';
+import useDate from '../hooks/useDate';
 
 const NoteModal = ({ visible, closeHandler, note, value, setValue }) => {
+    const { date } = useDate();
+
     const handleUpdate = async () => {
         if (value.note !== '') {
-            const { error } = await supabase.from('notes').update({ note: value.note }).eq('id', note.id);
+            const { error } = await supabase.from('notes').update({ note: value.note, date }).eq('id', note.id);
             error && console.log(error);
             closeHandler();
             setValue();
@@ -41,6 +44,7 @@ const NoteModal = ({ visible, closeHandler, note, value, setValue }) => {
                     required
                     fullWidth={true}
                 />
+                <Text>{date}</Text>
             </Modal.Body>
             <Modal.Footer>
                 <Button auto flat color="error" onClick={handleDelete}>

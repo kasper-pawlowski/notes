@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Card, Text } from '@nextui-org/react';
-
 import NoteModal from './NoteModal';
 
 const Note = ({ note }) => {

@@ -2,8 +2,6 @@ import { Button, Text, Navbar, Dropdown, Avatar, styled } from '@nextui-org/reac
 import React from 'react';
 
 const AppStackNavigator = ({ user, handleLogout, handler }) => {
-    console.log(user);
-
     const StyledAvatar = styled(Avatar, {
         cursor: 'pointer',
     });
