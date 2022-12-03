@@ -3,7 +3,6 @@ import Note from './Note';
 import './NotesList.css';
 import Columned from 'react-columned';
 import Loading from './Loading';
-
 import useNotes from '../hooks/useNotes';
 
 const NotesList = ({ searchValue }) => {

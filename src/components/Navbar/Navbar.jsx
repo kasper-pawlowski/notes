@@ -10,9 +10,11 @@ import AuthStackNavigator from './AuthStackNavigator';
 
 const Navbar = () => {
     const [visible, setVisible] = useState(false);
-    const [note, setNote] = useState('');
+    const [note, setNote] = useState([]);
     const handler = () => setVisible(true);
     const { user } = useAuth();
+
+    console.log(note);
 
     const closeHandler = () => {
         setVisible(false);

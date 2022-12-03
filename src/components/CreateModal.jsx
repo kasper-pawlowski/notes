@@ -1,4 +1,4 @@
-import { Button, Modal, Row, Text, Textarea } from '@nextui-org/react';
+import { Button, Input, Modal, Row, Text, Textarea } from '@nextui-org/react';
 import React, { useState } from 'react';
 import useDate from '../hooks/useDate';
 import supabase from '../services/supabase';
@@ -8,7 +8,7 @@ const CreateModal = ({ visible, closeHandler, note, setNote }) => {
 
     const handleCreate = async (e) => {
         e.preventDefault();
-        const { error } = await supabase.from('notes').insert([{ note: note.note, date }]);
+        const { error } = await supabase.from('notes').insert([{ title: note.title, note: note.note, date }]);
         error && console.log(error);
         closeHandler();
     };
@@ -22,16 +22,23 @@ const CreateModal = ({ visible, closeHandler, note, setNote }) => {
                     </Text>
                 </Modal.Header>
                 <Modal.Body>
+                    <Input
+                        aria-label="title"
+                        bordered
+                        onChange={(e) => setNote({ ...note, title: e.target.value })}
+                        size="lg"
+                        color="primary"
+                        placeholder="Title"
+                    />
                     <Textarea
-                        aria-label="Textarea"
-                        onChange={(e) => setNote({ note: e.target.value })}
+                        aria-label="note"
+                        onChange={(e) => setNote({ ...note, note: e.target.value })}
                         size="lg"
                         color="primary"
                         bordered
                         placeholder="Enter your amazing ideas."
                         minRows={4}
                         maxRows={8}
-                        required={true}
                         fullWidth={true}
                     />
                 </Modal.Body>

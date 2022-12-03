@@ -8,7 +8,7 @@ const Note = ({ note }) => {
 
     const handler = () => {
         setVisible(true);
-        setValue({ note: note.note });
+        setValue({ title: note.title, note: note.note });
     };
 
     const closeHandler = () => {
@@ -19,7 +19,12 @@ const Note = ({ note }) => {
         <>
             <Card onClick={handler} isPressable isHoverable variant="bordered">
                 <Card.Body>
-                    <Text css={{ whiteSpace: 'pre-line', wordBreak: 'break-word' }}>{note.note}</Text>
+                    <Text size="$xl" weight="semibold" css={{ whiteSpace: 'pre-line', wordBreak: 'break-word' }}>
+                        {note.title}
+                    </Text>
+                    <Text size="$md" css={{ whiteSpace: 'pre-line', wordBreak: 'break-word' }}>
+                        {note.note}
+                    </Text>
                 </Card.Body>
             </Card>
             <NoteModal visible={visible} closeHandler={closeHandler} note={note} value={value} setValue={setValue} />
